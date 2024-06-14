@@ -1,0 +1,1 @@
+1. Update new user after new user has played his first game.

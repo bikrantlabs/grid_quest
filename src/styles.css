@@ -1,0 +1,124 @@
+button.selected {
+    background: lightblue;
+    color: black;
+}
+
+button.selected.disabled_button {
+    background-color: #00e119;
+    color: black;
+}
+
+button.characters {
+    min-height: 50px;
+    min-width: 50px;
+    font-size: 22px;
+}
+
+.select-level-btn {
+    margin-bottom: 10px;
+}
+
+.select-difficulty-label {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.word_hints_grid {
+    margin-left: 20px;
+}
+
+.word_hint_label {
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.attempts_label {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.timer_label {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.label_strike {
+    color: rgb(204, 204, 204);
+    text-decoration: line-through;
+}
+
+.word_hint {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.dialog {
+    padding: 3rem;
+}
+
+.dialog_ok-btn {
+    min-height: 40px;
+    min-width: 50px;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.dialog_cancel-btn {
+    min-height: 40px;
+    min-width: 50px;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.game-over-label {
+    font-size: 28px;
+    margin-bottom: 20px;
+
+}
+
+.login-btn {
+    font-size: 18px;
+    margin-top: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.login-label {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.username-grid {
+    margin-bottom: 20px;
+}
+
+.score_label {
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+.top_scores {
+    font-size: 24px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.table_header {
+    font-size: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+
+}
+
+.table_data {
+    font-size: 22px;
+    margin-left: 20px;
+}
+
+.go_home_button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 22px;
+    margin-top: 30px;
+}
