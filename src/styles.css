@@ -15,7 +15,8 @@ button.characters {
 }
 
 .select-level-btn {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px
 }
 
 .select-difficulty-label {

@@ -1,31 +1,21 @@
 #include "free_memory.h"
 #include "typedefs.h"
 #include <gtk/gtk.h>
-#include <time.h>
 void free_button_grids(AppConfig *app_config) {
-  if (app_config == NULL || app_config->uiconfig == NULL) {
-    printf("AppConfig or Appconfig->uiconfig is null\n");
-  }
+
   if (app_config->uiconfig->buttons) {
     for (int i = 0; i < app_config->game_config->table_length; ++i) {
       if (app_config->uiconfig->buttons[i]) {
         for (int j = 0; j < app_config->game_config->table_length; ++j) {
           if (app_config->uiconfig->buttons[i][j]) {
-            printf("Freeing button [%d][%d]\n", i, j);
             gtk_widget_unparent(app_config->uiconfig->buttons[i][j]);
             g_object_unref(app_config->uiconfig->buttons[i][j]);
-          } else {
-            printf("Button [%d][%d] is NULL\n", i, j);
           }
         }
         free(app_config->uiconfig->buttons[i]);
-      } else {
-        printf("Row %d is NULL\n", i);
       }
     }
     free(app_config->uiconfig->buttons);
-  } else {
-    printf("Buttons array is NULL\n");
   }
 }
 void free_position_data(ClickedPositions *clicked_positions) {

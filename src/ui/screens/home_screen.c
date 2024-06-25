@@ -3,6 +3,7 @@
  */
 #include "callbacks.h"
 #include "file_utils.h"
+#include "glib-object.h"
 #include "screens.h"
 #include "typedefs.h"
 static void navigate_to_top_scores(GtkButton *button, gpointer user_data) {
@@ -19,12 +20,19 @@ static void navigate_to_top_scores(GtkButton *button, gpointer user_data) {
   gtk_stack_set_visible_child_name(GTK_STACK(app_config->uiconfig->stack),
                                    "top_scores_page");
 }
+static void navigate_to_logout_screen(GtkButton *button, gpointer user_data) {
+  AppConfig *app_config = (AppConfig *)user_data;
+  // free(app_config->game_config->username);
+  // free(app_config->game_config->password);
+  gtk_stack_set_visible_child_name(GTK_STACK(app_config->uiconfig->stack),
+                                   "login_page");
+}
 GtkWidget *home_screen(AppConfig *app_config) {
   GtkWidget *easy_button;
   GtkWidget *medium_button;
   GtkWidget *hard_button;
   GtkWidget *top_scores_button;
-
+  GtkWidget *logout_button;
   easy_button = gtk_button_new_with_label("Easy");
   g_signal_connect(easy_button, "clicked", G_CALLBACK(select_difficulty),
                    app_config);
@@ -37,6 +45,11 @@ GtkWidget *home_screen(AppConfig *app_config) {
   top_scores_button = gtk_button_new_with_label("Top Scores");
   g_signal_connect(top_scores_button, "clicked",
                    G_CALLBACK(navigate_to_top_scores), app_config);
+
+  logout_button = gtk_button_new_with_label("Logout");
+  //
+  g_signal_connect(logout_button, "clicked",
+                   G_CALLBACK(navigate_to_logout_screen), app_config);
   GtkWidget *grid = gtk_grid_new();
   GtkWidget *label = gtk_label_new("Select difficulty");
   gtk_widget_add_css_class(label, "select-difficulty-label");
@@ -48,6 +61,7 @@ GtkWidget *home_screen(AppConfig *app_config) {
   gtk_grid_attach(GTK_GRID(grid), medium_button, 0, 2, 1, 1);
   gtk_grid_attach(GTK_GRID(grid), hard_button, 0, 3, 1, 1);
   gtk_grid_attach(GTK_GRID(grid), top_scores_button, 0, 4, 1, 1);
+  gtk_grid_attach(GTK_GRID(grid), logout_button, 0, 5, 1, 1);
 
   gtk_widget_set_halign(grid, GTK_ALIGN_CENTER);
   gtk_widget_set_valign(grid, GTK_ALIGN_CENTER);
@@ -56,5 +70,6 @@ GtkWidget *home_screen(AppConfig *app_config) {
   gtk_widget_add_css_class(easy_button, "select-level-btn");
   gtk_widget_add_css_class(medium_button, "select-level-btn");
   gtk_widget_add_css_class(hard_button, "select-level-btn");
+  gtk_widget_add_css_class(logout_button, "select-level-btn");
   return grid;
 }
