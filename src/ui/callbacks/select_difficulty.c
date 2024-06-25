@@ -27,15 +27,15 @@ void select_difficulty(GtkButton *button, gpointer user_data) {
   if (strcmp(label, "Easy") == 0) {
     params->game_config->attempts += 4;
     params->game_config->difficulty = EASY;
-    words_data = load_words("../src/data/easy_words.txt", 5);
+    words_data = load_words("../src/data/easy_words.txt", 1);
   } else if (strcmp(label, "Medium") == 0) {
     params->game_config->attempts += 3;
     params->game_config->difficulty = MEDIUM;
-    words_data = load_words("../src/data/medium_words.txt", 5);
+    words_data = load_words("../src/data/medium_words.txt", 1);
   } else if (strcmp(label, "Hard") == 0) {
     params->game_config->attempts += 2;
     params->game_config->difficulty = HARD;
-    words_data = load_words("../src/data/hard_words.txt", 5);
+    words_data = load_words("../src/data/hard_words.txt", 1);
   } else {
     params->game_config->attempts += 4;
     params->game_config->difficulty = MEDIUM;

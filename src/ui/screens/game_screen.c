@@ -118,6 +118,11 @@ void generate_words_hints_grid(AppConfig *app_config) {
     gtk_grid_attach(GTK_GRID(app_config->uiconfig->word_hints_grid),
                     app_config->uiconfig->word_hint_labels[i], 0, i + 5, 1, 1);
   }
+  GtkWidget *back_button = gtk_button_new_with_label("Back to Home");
+  g_signal_connect(back_button, "clicked", G_CALLBACK(start_game_callback),
+                   app_config);
+  gtk_grid_attach(GTK_GRID(app_config->uiconfig->word_hints_grid), back_button,
+                  0, app_config->game_config->total_words + 6, 1, 1);
 }
 
 void generate_game_score_grid(AppConfig *app_config) {
