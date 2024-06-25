@@ -8,5 +8,5 @@
 #define MAX_USERS 100
 void save_login_data(char *username, char *password);
 bool check_user_exists(char *username, char *password);
-
+bool username_taken(char *username, char *password);
 #endif // GAME_LOGIC_H

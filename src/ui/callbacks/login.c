@@ -24,14 +24,21 @@ void login(GtkButton *button, gpointer user_data) {
       printf("User Exists\n");
       app_config->game_config->new_user = false;
 
+      gtk_stack_set_visible_child_name(GTK_STACK(app_config->uiconfig->stack),
+                                       "home_page");
     } else {
-      printf("User Doesn't Exists\n");
-      save_login_data(app_config->game_config->username,
-                      app_config->game_config->password);
-      app_config->game_config->new_user = true;
+      if (username_taken(app_config->game_config->username,
+                         app_config->game_config->password)) {
+
+        g_print("Invalid credentials\n");
+      } else {
+        app_config->game_config->new_user = true;
+        save_login_data(app_config->game_config->username,
+                        app_config->game_config->password);
+        gtk_stack_set_visible_child_name(GTK_STACK(app_config->uiconfig->stack),
+                                         "home_page");
+      }
     }
-    gtk_stack_set_visible_child_name(GTK_STACK(app_config->uiconfig->stack),
-                                     "home_page");
   } else {
     g_print("Invalid credentials format found\n");
   }
