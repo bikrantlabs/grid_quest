@@ -4,7 +4,6 @@
 #include "get_words.h"
 #include "grid_utils.h"
 #include "screens.h"
-#include "time_converter.h"
 #include "timer.h"
 #include "typedefs.h"
 #include "word_utils.h"
@@ -14,32 +13,35 @@
 void select_difficulty(GtkButton *button, gpointer user_data) {
   AppConfig *params = (AppConfig *)user_data;
   const gchar *label = gtk_button_get_label(button);
-  // Free memory for top scores after we enter game screen
 
   // Allocate all memory only after selecting difficulty
   LoadWordsReturn *words_data;
-  params->game_config->words = malloc(5 * sizeof(char *));
+
   params->game_config->timer_data = malloc(sizeof(TimerData));
   params->game_config->timer_data->minutes = 0;
   params->game_config->timer_data->seconds = 0;
   params->game_config->attempts = 0;
 
   if (strcmp(label, "Easy") == 0) {
-    params->game_config->attempts += 4;
+    params->game_config->attempts += ADDITIONAL_EASY_ATTEMPTS;
+    params->game_config->words = malloc(TOTAL_EASY_WORDS * sizeof(char *));
     params->game_config->difficulty = EASY;
-    words_data = load_words("../src/data/easy_words.txt", 1);
+    words_data = load_words("../src/data/easy_words.txt", TOTAL_EASY_WORDS);
   } else if (strcmp(label, "Medium") == 0) {
-    params->game_config->attempts += 3;
+    params->game_config->attempts += ADDITIONAL_MEDIUM_ATTEMPTS;
+    params->game_config->words = malloc(TOTAL_MEDIUM_WORDS * sizeof(char *));
     params->game_config->difficulty = MEDIUM;
-    words_data = load_words("../src/data/medium_words.txt", 1);
+    words_data = load_words("../src/data/medium_words.txt", TOTAL_MEDIUM_WORDS);
   } else if (strcmp(label, "Hard") == 0) {
-    params->game_config->attempts += 2;
+    params->game_config->attempts += ADDITIONAL_HARD_ATTEMPTS;
+    params->game_config->words = malloc(TOTAL_HARD_WORDS * sizeof(char *));
     params->game_config->difficulty = HARD;
-    words_data = load_words("../src/data/hard_words.txt", 1);
+    words_data = load_words("../src/data/hard_words.txt", TOTAL_HARD_WORDS);
   } else {
-    params->game_config->attempts += 4;
+    params->game_config->attempts += ADDITIONAL_MEDIUM_ATTEMPTS;
+    params->game_config->words = malloc(TOTAL_MEDIUM_WORDS * sizeof(char *));
     params->game_config->difficulty = MEDIUM;
-    words_data = load_words("../src/data/medium_words.txt", 5);
+    words_data = load_words("../src/data/medium_words.txt", TOTAL_MEDIUM_WORDS);
   }
   // Get Scores:
 
