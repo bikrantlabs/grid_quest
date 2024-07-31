@@ -70,7 +70,6 @@ void free_timer_data(AppConfig *app_config) {
   if (app_config && app_config->game_config) {
     if (app_config->game_config->timer_data) {
       free(app_config->game_config->timer_data);
-      app_config->game_config->timer_data = NULL; // Set to NULL after freeing
     }
   }
 }
