@@ -8,6 +8,7 @@ int longest_word_in_array(char **word, int total_words);
 char generate_random_character(char **words, int total_words);
 char *uppercase(char *str);
 int is_number_in_array(int arr[], int size, int number);
+char *remove_whitespaces(const char *str);
 bool is_word_found(int selected_coords[], int selected_count, int word_coords[],
                    int word_count);
 #endif // WORD_UTILS_H

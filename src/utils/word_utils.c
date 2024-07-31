@@ -99,3 +99,25 @@ bool is_word_found(int selected_coords[], int selected_count, int word_coords[],
 
   return true;
 }
+char *remove_whitespaces(const char *str) {
+  // Allocate memory for the result string
+  size_t length = strlen(str);
+  char *result = (char *)malloc(length + 1); // +1 for null terminator
+  if (!result) {
+    fputs("Memory allocation failed", stderr);
+    return NULL;
+  }
+
+  char *dest = result;
+  const char *src = str;
+
+  while (*src != '\0') {
+    if (!isspace((unsigned char)*src)) {
+      *dest++ = *src;
+    }
+    src++;
+  }
+  *dest = '\0';
+
+  return result;
+}

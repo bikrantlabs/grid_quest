@@ -1,5 +1,6 @@
 #include "file_utils.h"
 #include "typedefs.h"
+#include "word_utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -111,4 +112,15 @@ LoadWordsReturn *load_words(const char *filepath, const int total_words) {
   // Close the file
   fclose(in);
   return word_data;
+}
+void save_new_word_to_file(const char *filepath, const char *word) {
+  FILE *fp = fopen(filepath, "a+");
+  char *removed = remove_whitespaces(word);
+  if (fp == NULL) {
+    fputs("Cannot open file.", stderr);
+    return;
+  }
+  fprintf(fp, "\n%s", removed);
+  fclose(fp);
+  return;
 }

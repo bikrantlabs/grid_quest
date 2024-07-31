@@ -4,8 +4,7 @@
 #include <stdbool.h>
 typedef enum Direction { HORIZONTAL, VERTICAL } Direction;
 typedef enum Difficulty { EASY, MEDIUM, HARD } Difficulty;
-
-// Struct for savin game state like total words placed, their positions, etc
+// Struct for saving game state like total words placed, their positions, etc
 typedef struct {
   int *coords;
   char *word;
@@ -32,6 +31,12 @@ typedef struct {
 } TopScores;
 
 typedef struct {
+  GtkWidget *easy_button;
+  GtkWidget *medium_button;
+  GtkWidget *hard_button;
+} RadioButtonGroup;
+
+typedef struct {
   int total_words;
   int table_length;
   int total_score_count;
@@ -45,6 +50,7 @@ typedef struct {
   int attempts;
   char previous_score[10];
   int previous_score_flat;
+  Difficulty custom_word_category;
   TopScores *top_scores;
   Difficulty difficulty;
   GameState *game_state;
@@ -85,6 +91,7 @@ typedef struct {
   GtkWidget *timer_label;
   GtkEntryBuffer *username_input;
   GtkEntryBuffer *password_input;
+  GtkEntryBuffer *new_word_input;
   GtkWidget **top_score_labels;
   GtkWidget *score_grid;
   GtkWidget *top_score_parent_grid;
