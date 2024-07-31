@@ -16,7 +16,7 @@ button.characters {
 
 .select-level-btn {
     margin-bottom: 5px;
-    margin-top: 5px
+    margin-top: 5px;
 }
 
 .select-difficulty-label {
@@ -122,4 +122,18 @@ button.characters {
     padding-bottom: 10px;
     font-size: 22px;
     margin-top: 30px;
+}
+
+.new_word_label {
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.mb-10 {
+    margin-bottom: 20px;
+}
+
+.mt-20 {
+    margin-top: 20px;
 }

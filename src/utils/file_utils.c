@@ -112,3 +112,13 @@ LoadWordsReturn *load_words(const char *filepath, const int total_words) {
   fclose(in);
   return word_data;
 }
+void save_new_word_to_file(const char *filepath, const char *word) {
+  FILE *fp = fopen(filepath, "a+");
+  if (fp == NULL) {
+    fputs("Cannot open file.", stderr);
+    return;
+  }
+  fprintf(fp, "%s\n", word);
+  fclose(fp);
+  return;
+}

@@ -9,4 +9,5 @@ void save_scores(AppConfig *app_config);
 void get_score(AppConfig *app_config);
 void get_top_scores(AppConfig *app_config);
 bool check_score_exists(AppConfig *app_config);
+void save_new_word_to_file(const char *filepath, const char *word);
 #endif

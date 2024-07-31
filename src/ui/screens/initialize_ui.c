@@ -13,7 +13,10 @@ void initialize_ui(AppConfig *app_config, GtkWidget *window) {
   // Home Page
   CreatePageParams home_page_params = {"home_page", "Home Page"};
   CreatePageParams login_page_params = {"login_page", "Login Page"};
+  CreatePageParams add_words_params = {"add_words_page", "Add Words Page"};
   GtkWidget *home_page = create_page(stack, home_page_params);
+  GtkWidget *add_words_page = create_page(stack, add_words_params);
+
   GtkWidget *login_page = create_page(stack, login_page_params);
   app_config->uiconfig->login_page = login_page;
   // Create the game page
@@ -58,7 +61,9 @@ void initialize_ui(AppConfig *app_config, GtkWidget *window) {
 
   // GtkWidget *login_screen = login_screen(app_config);
   GtkWidget *login_screen_grid = login_screen(app_config);
+  GtkWidget *add_words_grid = add_words_screen(app_config);
   gtk_box_append(GTK_BOX(login_page), login_screen_grid);
 
+  gtk_box_append(GTK_BOX(add_words_page), add_words_grid);
   g_signal_connect(stack, "destroy", G_CALLBACK(destroy_g), NULL);
 }
