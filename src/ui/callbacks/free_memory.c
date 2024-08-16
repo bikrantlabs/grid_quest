@@ -59,11 +59,19 @@ void free_game_config(AppConfig *app_config) {
     if (app_config->game_config->game_state[i].coords)
       free(app_config->game_config->game_state[i].coords);
   }
-  if (app_config->game_config->words)
+  if (app_config->game_config->words != NULL) {
+    for (int i = 0; i < app_config->game_config->total_words; i++) {
+      free(app_config->game_config->words[i]);
+    }
     free(app_config->game_config->words);
+  }
 
-  if (app_config->game_config->table)
-    free(app_config->game_config->table);
+  if (app_config->game_config->table != NULL) {
+    for (int i = 0; i < app_config->game_config->table_length; i++) {
+      free(app_config->game_config->table[i]); // Free each row
+    }
+    free(app_config->game_config->table); // Free the array of pointers
+  }
 }
 
 void free_timer_data(AppConfig *app_config) {

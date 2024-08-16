@@ -15,7 +15,6 @@ void select_difficulty(GtkButton *button, gpointer user_data) {
   const gchar *label = gtk_button_get_label(button);
 
   // Allocate all memory only after selecting difficulty
-  LoadWordsReturn *words_data;
 
   params->game_config->timer_data = malloc(sizeof(TimerData));
   params->game_config->timer_data->minutes = 0;
@@ -24,32 +23,34 @@ void select_difficulty(GtkButton *button, gpointer user_data) {
 
   if (strcmp(label, "Easy") == 0) {
     params->game_config->attempts += ADDITIONAL_EASY_ATTEMPTS;
-    params->game_config->words = malloc(TOTAL_EASY_WORDS * sizeof(char *));
     params->game_config->difficulty = EASY;
-    words_data = load_words("../src/data/easy_words.txt", TOTAL_EASY_WORDS);
+    LoadWordsReturn *words_data =
+        load_words("../src/data/easy_words.txt", TOTAL_EASY_WORDS);
+    params->game_config->words = words_data->words;
+    params->game_config->total_words = words_data->total_words;
   } else if (strcmp(label, "Medium") == 0) {
     params->game_config->attempts += ADDITIONAL_MEDIUM_ATTEMPTS;
-    params->game_config->words = malloc(TOTAL_MEDIUM_WORDS * sizeof(char *));
     params->game_config->difficulty = MEDIUM;
-    words_data = load_words("../src/data/medium_words.txt", TOTAL_MEDIUM_WORDS);
+    // words_data = load_words("../src/data/medium_words.txt",
+    // TOTAL_MEDIUM_WORDS);
   } else if (strcmp(label, "Hard") == 0) {
     params->game_config->attempts += ADDITIONAL_HARD_ATTEMPTS;
-    params->game_config->words = malloc(TOTAL_HARD_WORDS * sizeof(char *));
     params->game_config->difficulty = HARD;
-    words_data = load_words("../src/data/hard_words.txt", TOTAL_HARD_WORDS);
+    LoadWordsReturn *words_data =
+        load_words("../src/data/hard_words.txt", TOTAL_HARD_WORDS);
+    params->game_config->words = words_data->words;
+    params->game_config->total_words = words_data->total_words;
   } else {
     params->game_config->attempts += ADDITIONAL_MEDIUM_ATTEMPTS;
-    params->game_config->words = malloc(TOTAL_MEDIUM_WORDS * sizeof(char *));
     params->game_config->difficulty = MEDIUM;
-    words_data = load_words("../src/data/medium_words.txt", TOTAL_MEDIUM_WORDS);
+    LoadWordsReturn *words_data =
+        load_words("../src/data/medium_words.txt", TOTAL_MEDIUM_WORDS);
+    params->game_config->words = words_data->words;
+    params->game_config->total_words = words_data->total_words;
   }
   // Get Scores:
 
   get_score(params);
-
-  RandomSelectedWords *random_word = get_words(params->game_config->difficulty);
-  params->game_config->words = words_data->words;
-  params->game_config->total_words = words_data->total_words;
 
   int longest_word = longest_word_in_array(params->game_config->words,
                                            params->game_config->total_words);
